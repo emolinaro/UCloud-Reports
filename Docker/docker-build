@@ -1,0 +1,7 @@
+#!/bin/bash
+
+repo=$(git rev-parse --show-toplevel)
+
+cd $repo/Docker
+
+docker build -t streamlit:latest .

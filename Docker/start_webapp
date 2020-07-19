@@ -1,0 +1,74 @@
+#!/bin/bash
+
+## environment
+ENVSM=base
+
+while getopts F:f:m:s: option
+do
+	case "${option}"
+	in
+		F) FOLDER=${OPTARG};;
+		f) MAINFILE=${OPTARG};;
+		m) CONFIGFILE=${OPTARG};;
+		s) SCRIPT_ARGS=${OPTARG};;
+	esac
+done
+
+printf  "\n=========================  "
+printf  "\n Installing dependencies  \n"
+printf  "=========================  \n\n"
+
+if [ -f $CONFIGFILE ] 
+then
+	
+    if [[ $CONFIGFILE == *.txt ]]
+    then 
+     		conda install -y -n $ENVSM --file $CONFIGFILE
+     		
+ 	
+ 	elif [[ $CONFIGFILE == *.yml ]] || [[ $CONFIGFILE == *.yaml ]]
+ 	then
+ 			conda env update -n $ENVSM -f $CONFIGFILE
+ 			
+ 	elif [[ $CONFIGFILE == *.sh ]]
+ 	then
+ 			bash $CONFIGFILE
+
+ 	else
+ 		echo "no additional dependencies"
+ 		echo ""
+ 	fi
+
+fi
+
+printf  "\n====================  "
+printf  "\n Start Web App  \n"
+printf  "====================  \n\n"
+
+## get filename of main file
+sfname="$(basename -- $MAINFILE)"
+
+cd $FOLDER
+
+files="$(find $PWD -name $sfname)"
+
+# check if there are more files named as the main file
+array=(${files})
+
+len="${#array[@]}"
+
+if [[ $len > 1 ]]
+then
+	echo "" 
+	echo "Error: $len files named '$sfname'. Use a unique name for the main file."
+	echo "" 
+	exit 1
+fi
+
+path=$files
+
+## change directory to main file
+cd $(dirname  $path)
+
+## launch app
+bash -c "streamlit run $sfname -- $SCRIPT_ARGS" 
