@@ -1,0 +1,10 @@
+Host, GPUs, Batch size/GPU, Time to train - FP32 (s), Time to train - Mixed precision (s), Throughput - FP32 (images/s), Throughput - Mixed precision (images/s)
+UCloud, 1, 32, 103.50, 56.76, 127.22, 201.88
+UCloud, 2, 32, 108.27, 60.84, 250.70, 390.23
+UCloud, 4, 32, 116.09, 65.76, 496.96, 778.14
+IBM PowerAI, 1, 32, 103.07, 60.63, 128.34, 187.70
+IBM PowerAI, 2, 32, 107.70, 64.39, 254.71, 371.52
+IBM PowerAI, 4, 32, 118.84, 74.46, 508.72, 740.00
+NVIDIA DGX-1, 1, 32, , , 133.67, 215.30
+NVIDIA DGX-1, 4, 32, , , 532.05, 828.63
+NVIDIA DGX-1, 8, 32, , , 820.70, 1647.74

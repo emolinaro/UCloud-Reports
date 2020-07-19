@@ -1,0 +1,8 @@
+Host, GPUs,  Loss - FP32, Loss - Mixed precision, Time to train - FP32 (h), Time to train - Mixed precision (h), Throughput - FP32 (mels/s), Throughput - Mixed precision (mels/s)
+UCloud, 1, 0.0, 1.49, 0.0, 30, 0.0, 20463
+UCloud, 2, 1.08, 0.865, 29, 17, 20155, 35749
+UCloud, 4, 0.853, 8.848, 14, 9, 43512, 78828
+IBM PowerAI, 1, 0.992, 1.04, 73, 42, 8313, 14328
+IBM PowerAI, 2, 1.07, 0.844, 37, 22, 16288, 28392
+IBM PowerAI, 4, 0.788, 0.845, 19, 11, 32523, 54870
+
