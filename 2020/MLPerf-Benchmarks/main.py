@@ -8,10 +8,10 @@ import plotly.express as px
 ## Deep Learning Benchmark Tests
 
 ### Latest update:
-July 19, 2020
+July 22, 2020
 
 ### Author:
-Emiliano Molinaro Ph.D. \n
+**Emiliano Molinaro** Ph.D. \n
 Computational Scientist \n
 eScience Center \n
 Syddansk Universitet
@@ -21,9 +21,22 @@ Syddansk Universitet
 This report summarizes the results of performance tests done on the UCloud interactive HPC platform and the IBM PowerAI 
 system, based on [MLPerf training benchmarks](https://mlperf.org/training-overview/#overview). Each benchmark measures 
 the wallclock time required to train a model on the specified dataset to achieve the specified quality target. 
-The tests are done with NVIDIA CUDA-X software stack running on NVIDIA Volta GPUs.
+
+The tests are done using the NVIDIA CUDA-X software stack running on NVIDIA Volta GPUs. The latter leverage the built-in 
+NVIDIA [Tensor Cores](https://www.nvidia.com/en-us/data-center/tensor-cores/) technology to accelerate multi- and 
+[mixed-precision](https://developer.nvidia.com/automatic-mixed-precision) computing. 
+
 The results are compared with the performance of NVIDIA DGX-1/DGX-2 systems reported 
 [here](https://github.com/NVIDIA/DeepLearningExamples).
+
+### Specs:
+
+The runtime system on UCloud corresponds to one `u1-gpu-4` machine: 
+- 4 NVIDIA Volta GPUs 
+- 78 CPU cores
+- 185 GB of memory
+
+
 
 """
 
