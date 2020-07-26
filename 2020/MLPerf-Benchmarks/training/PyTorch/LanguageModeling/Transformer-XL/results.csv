@@ -1,0 +1,16 @@
+Host, GPUs, Batch size / GPU, Accuracy - FP32 (perplexity), Accuracy - Mixed precision (perplexity), Time to train - FP32 (min), Time to train - Mixed precision (min), Throughput - FP32 (tok/s), Throughput - Mixed precision (tok/s)
+UCloud, 1, 16, 766.793, 777.903, 2.08, 1.08, 13540, 27357
+UCloud, 2, 16, 674.100, 689.258, 2.41, 1.18, 23993, 49862
+UCloud, 4, 16, 578.787, 588.752, 2.32, 1.19, 48439, 98825
+IBM PowerAI, 1, 16, 769.149, 770.865, 2.31, 1.27, 12016, 22574
+IBM PowerAI, 2, 16, 665.323, 674.141, 2.44, 1.36, 22362, 41831
+IBM PowerAI, 4, 16, 583.166, 587.042, 2.67, 1.48, 40278, 75765
+NVIDIA DGX-1, 1, 16, , , , , 13981, 26639
+NVIDIA DGX-1, 2, 16, , , , , 23163, 45299
+NVIDIA DGX-1, 4, 16, , , , , 48893, 92618
+NVIDIA DGX-1, 8, 16, , , , , 97005, 170532
+NVIDIA DGX-2, 1, 16, , , , , 16150, 32875
+NVIDIA DGX-2, 2, 16, , , , , 29712, 59058
+NVIDIA DGX-2, 4, 16, , , , , 58011, 113985
+NVIDIA DGX-2, 8, 16, , , , , 114655, 223907
+NVIDIA DGX-2, 16, 16, , , , , 222920, 414994

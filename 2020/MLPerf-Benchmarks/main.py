@@ -18,9 +18,10 @@ Syddansk Universitet
 
 ### Desciption:
 
-This report summarizes the results of performance tests done on the UCloud interactive HPC platform and the IBM PowerAI 
-system, based on [MLPerf training benchmarks](https://mlperf.org/training-overview/#overview). Each benchmark measures 
-the wallclock time required to train a model on the specified dataset to achieve the specified quality target. 
+This report summarizes the results of _single-node data-parallel training_ tests done on the UCloud interactive HPC 
+platform and the IBM PowerAI system, based on [MLPerf training benchmarks](https://mlperf.org/training-overview/#overview). 
+Each benchmark measures the wallclock time required to train a model on the specified dataset to achieve the 
+specified quality target. 
 
 The tests are done using the NVIDIA CUDA-X software stack running on NVIDIA Volta GPUs. The latter leverage the built-in 
 NVIDIA [Tensor Cores](https://www.nvidia.com/en-us/data-center/tensor-cores/) technology to accelerate multi- and 
@@ -65,39 +66,6 @@ cols1 = list(df1.columns.values)
 
 if st.checkbox("Show data benchmark 1"):
 	st.table(df1)
-
-# fig1 = px.bar(df1,
-#               y=cols1[6],
-#               x=cols1[1],
-#               color=cols1[0],
-#               barmode="group",
-#               color_discrete_map={'UCloud': 'blue',
-#                                   'IBM PowerAI': 'red',
-#                                   'NVIDIA DGX-1': 'green',
-#                                   'NVIDIA DGX-2': 'orange'},
-#               title=cols1[6],
-#               hover_data=[cols1[1], cols1[6]],
-#               )
-# fig1.update_xaxes(tickvals=[1, 2, 3, 4, 8, 16], title_text="Number of GPUs")
-# fig1.update_yaxes(title_text=None)
-#
-# fig2 = px.bar(df1,
-#               y=cols1[7],
-#               x=cols1[1],
-#               color=cols1[0],
-#               barmode="group",
-#               color_discrete_map={'UCloud': 'blue',
-#                                   'IBM PowerAI': 'red',
-#                                   'NVIDIA DGX-1': 'green',
-#                                   'NVIDIA DGX-2': 'orange'},
-#               title=cols1[7],
-#               hover_data=[cols1[1], cols1[7]],
-#               )
-# fig2.update_xaxes(tickvals=[1, 2, 3, 4, 8, 16], title_text="Number of GPUs")
-# fig2.update_yaxes(title_text=None)
-#
-# st.plotly_chart(fig1)
-# st.plotly_chart(fig2)
 
 dfp1 = df1.loc[:, [cols1[0], cols1[1], cols1[4], cols1[6]]]
 dfp1 = dfp1.rename(columns={cols1[4]: 'Time to train (s)'})
@@ -175,39 +143,6 @@ cols2 = list(df2.columns.values)
 if st.checkbox("Show data benchmark 2"):
 	st.table(df2)
 
-# fig1 = px.bar(df2,
-#               y=cols2[5],
-#               x=cols2[1],
-#               color=cols2[0],
-#               barmode="group",
-#               color_discrete_map={'UCloud': 'blue',
-#                                   'IBM PowerAI': 'red',
-#                                   'NVIDIA DGX-1': 'green',
-#                                   },
-#               title=cols2[5],
-#               hover_data=[cols2[1], cols2[5]],
-#               )
-# fig1.update_xaxes(tickvals=[1, 2, 4, 8], title_text="Number of GPUs")
-# fig1.update_yaxes(title_text=None)
-#
-# fig2 = px.bar(df2,
-#               y=cols2[6],
-#               x=cols2[1],
-#               color=cols2[0],
-#               barmode="group",
-#               color_discrete_map={'UCloud': 'blue',
-#                                   'IBM PowerAI': 'red',
-#                                   'NVIDIA DGX-1': 'green',
-#                                   },
-#               title=cols2[6],
-#               hover_data=[cols2[1], cols2[6]],
-#               )
-# fig2.update_xaxes(tickvals=[1, 2, 4, 8], title_text="Number of GPUs")
-# fig2.update_yaxes(title_text=None)
-#
-# st.plotly_chart(fig1)
-# st.plotly_chart(fig2)
-
 dfp1 = df2.loc[:, [cols2[0], cols2[1], cols2[3], cols2[5]]]
 dfp1 = dfp1.rename(columns={cols2[3]: 'Time to train (s)'})
 dfp1 = dfp1.rename(columns={cols2[5]: 'Throughput (images/s)'})
@@ -283,41 +218,6 @@ cols3 = list(df3.columns.values)
 
 if st.checkbox("Show data benchmark 3"):
 	st.table(df3)
-
-# fig1 = px.bar(df3,
-#               y=cols3[7],
-#               x=cols3[1],
-#               color=cols3[0],
-#               barmode="group",
-#               color_discrete_map={'UCloud': 'blue',
-#                                   'IBM PowerAI': 'red',
-#                                   'NVIDIA DGX-1': 'green',
-#                                   'NVIDIA DGX-2': 'orange'
-#                                   },
-#               title=cols3[7],
-#               hover_data=[cols3[1], cols3[7]],
-#               )
-# fig1.update_xaxes(tickvals=[1, 2, 4, 8, 16], title_text="Number of GPUs")
-# fig1.update_yaxes(title_text=None)
-#
-# fig2 = px.bar(df3,
-#               y=cols3[8],
-#               x=cols3[1],
-#               color=cols3[0],
-#               barmode="group",
-#               color_discrete_map={'UCloud': 'blue',
-#                                   'IBM PowerAI': 'red',
-#                                   'NVIDIA DGX-1': 'green',
-#                                   'NVIDIA DGX-2': 'orange'
-#                                   },
-#               title=cols3[8],
-#               hover_data=[cols3[1], cols3[8]],
-#               )
-# fig2.update_xaxes(tickvals=[1, 2, 4, 8, 16], title_text="Number of GPUs")
-# fig2.update_yaxes(title_text=None)
-#
-# st.plotly_chart(fig1)
-# st.plotly_chart(fig2)
 
 dfp1 = df3.loc[:, [cols3[0], cols3[1], cols3[5], cols3[7]]]
 dfp1 = dfp1.rename(columns={cols3[5]: 'Time to train (min)'})
@@ -441,3 +341,63 @@ fig2.update_xaxes(tickvals=[1, 2, 4], title_text="Number of GPUs")
 
 st.plotly_chart(fig1)
 st.plotly_chart(fig2)
+
+st.write("-------")
+
+###############################
+st.subheader("**Benchmark 5**")
+###############################
+
+st.markdown("""
+**Category:** 
+Natural Language Processing
+
+**Model:**
+[Transformer-XL](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/LanguageModeling/Transformer-XL)
+
+**Framework:**
+PyTorch
+
+""")
+
+path_to_file = "training/PyTorch/LanguageModeling/Transformer-XL/results.csv"
+
+df5 = pd.read_csv(path_to_file)
+cols5 = list(df5.columns.values)
+
+if st.checkbox("Show data benchmark 5"):
+	st.table(df5)
+
+dfp1 = df5.loc[:, [cols5[0], cols5[1], cols5[5], cols5[7]]]
+dfp1 = dfp1.rename(columns={cols5[5]: 'Time to train (min)'})
+dfp1 = dfp1.rename(columns={cols5[7]: 'Throughput (tok/s)'})
+dfp1['Training type'] = 'FP32'
+
+dfp2 = df5.loc[:, [cols5[0], cols5[1], cols5[6], cols5[8]]]
+dfp2 = dfp2.rename(columns={cols5[6]: 'Time to train (min)'})
+dfp2 = dfp2.rename(columns={cols5[8]: 'Throughput (tok/s)'})
+dfp2['Training type'] = 'Mixed precision'
+
+dff = pd.concat([dfp1, dfp2])
+
+# st.table(dff)
+
+cols = list(dff.columns.values)
+
+fig1 = px.bar(dff,
+              y=cols[3],
+              x=cols[1],
+              color=cols[0],
+              barmode="group",
+              color_discrete_map={'UCloud': 'blue',
+                                  'IBM PowerAI': 'red',
+                                  'NVIDIA DGX-1': 'green',
+                                  'NVIDIA DGX-2': 'orange'
+                                  },
+              hover_data=[cols[1], cols[3]],
+              facet_col=cols[4]
+              )
+
+fig1.update_xaxes(tickvals=[1, 2, 4, 8, 16], title_text="Number of GPUs")
+
+st.plotly_chart(fig1)
