@@ -2,10 +2,78 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
+
 @st.cache
 def load_data(file):
     data = pd.read_csv(file)
     return data
+
+
+#####################
+### HTML SETTINGS ###
+#####################
+
+ucloud_color = '#006AFF'
+pwrai_color = 'red'
+dgx1_color = 'green'
+dgx2_color = 'gold'
+body_color = '#F5FFFA'
+header_color = 'black'
+subheader_color = '#c00'
+code_color = '#c00'
+plt_bkg_color = body_color
+
+header = '<style>h1{color: %s;}</style>' % (header_color)
+subheader = '<style>h2{color: %s;}</style>' % (subheader_color)
+body = '<style>body{background-color: %s;}</style>' % (body_color)
+code = '<style>code{color: %s; }</style>' % (code_color)
+
+sidebar = """
+  <style>
+    # .reportview-container {
+    #   flex-direction: row-reverse;
+    # }
+
+    # header > .toolbar {
+    #   flex-direction: row-reverse;
+    #   left: 1rem;
+    #   right: auto;
+    # }
+
+    # .sidebar .sidebar-collapse-control,
+    # .sidebar.--collapsed .sidebar-collapse-control {
+    #   left: auto;
+    #   right: 0.5rem;
+    # }
+   
+    .sidebar .sidebar-content {
+      transition: margin-right .3s, box-shadow .3s;
+      background-image: linear-gradient(180deg,%s,%s);
+      width: 20rem;
+    }
+   
+    # .sidebar.--collapsed .sidebar-content {
+    #   margin-left: auto;
+    #   margin-right: -20rem;
+    # }
+
+    @media (max-width: 991.98px) {
+      .sidebar .sidebar-content {
+        margin-left: auto;
+      }
+    }
+  </style>
+""" % (ucloud_color, body_color)
+
+st.markdown(header, unsafe_allow_html=True)
+st.markdown(subheader, unsafe_allow_html=True)
+st.markdown(body, unsafe_allow_html=True)
+st.markdown(code, unsafe_allow_html=True)
+st.markdown(sidebar, unsafe_allow_html=True)
+
+#############
+### TITLE ###
+#############
 
 """
 # UCloud Report
@@ -15,8 +83,12 @@ def load_data(file):
 
 st.write("-------")
 
+###################
+### DESCRIPTION ###
+###################
+
 description = """
-### Latest update:
+### Last update:
 July 31, 2020
 
 ### Author:
@@ -48,9 +120,17 @@ The runtime system on UCloud corresponds to one `u1-gpu-4` machine:
 
 """
 
+#################
+### SIDE MENU ###
+#################
+
 st.sidebar.title("Benchmark Models")
 
-radio = st.sidebar.radio(label="", options=["Description", "Benchmark 1", "Benchmark 2", "Benchmark 3", "Benchmark 4",
+radio = st.sidebar.radio(label="", options=["Description",
+                                            "Benchmark 1",
+                                            "Benchmark 2",
+                                            "Benchmark 3",
+                                            "Benchmark 4",
                                             "Benchmark 5"])
 
 if radio == "Benchmark 1":
@@ -100,36 +180,39 @@ if radio == "Benchmark 1":
                   x=cols[1],
                   color=cols[0],
                   barmode="group",
-                  color_discrete_map={'UCloud': 'blue',
-                                      'IBM PowerAI': 'red',
-                                      'NVIDIA DGX-1': 'green',
-                                      'NVIDIA DGX-2': 'orange'},
+                  color_discrete_map={'UCloud': ucloud_color,
+                                      'IBM PowerAI': pwrai_color,
+                                      'NVIDIA DGX-1': dgx1_color,
+                                      'NVIDIA DGX-2': dgx2_color
+                                      },
                   hover_data=[cols[1], cols[3]],
                   facet_col=cols[4]
                   )
 
-    fig1.update_xaxes(tickvals=[1, 2, 3, 4, 8, 16], title_text="Number of GPUs")
+    fig1.update_xaxes(tickvals=[1, 2, 3, 4, 8, 16], title_text="Number of GPUs", linecolor='black')
+    fig1.update_yaxes(linecolor='black', showgrid=True, gridwidth=1, gridcolor='LightGrey')
+    fig1.update_layout({'paper_bgcolor': plt_bkg_color, 'plot_bgcolor': plt_bkg_color})
 
     fig2 = px.bar(dff,
                   y=cols[2],
                   x=cols[1],
                   color=cols[0],
                   barmode="group",
-                  color_discrete_map={'UCloud': 'blue',
-                                      'IBM PowerAI': 'red',
-                                      'NVIDIA DGX-1': 'green',
-                                      'NVIDIA DGX-2': 'orange',
+                  color_discrete_map={'UCloud': ucloud_color,
+                                      'IBM PowerAI': pwrai_color,
+                                      'NVIDIA DGX-1': dgx1_color,
+                                      'NVIDIA DGX-2': dgx2_color
                                       },
                   hover_data=[cols[1], cols[2]],
                   facet_col=cols[4]
                   )
 
-    fig2.update_xaxes(tickvals=[1, 2, 3, 4, 8, 16], title_text="Number of GPUs")
+    fig2.update_xaxes(tickvals=[1, 2, 3, 4, 8, 16], title_text="Number of GPUs", linecolor='black')
+    fig2.update_yaxes(linecolor='black', showgrid=True, gridwidth=1, gridcolor='LightGrey')
+    fig2.update_layout({'paper_bgcolor': plt_bkg_color, 'plot_bgcolor': plt_bkg_color})
 
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
-
-    st.write("-------")
 
 elif radio == "Benchmark 2":
 
@@ -178,36 +261,38 @@ elif radio == "Benchmark 2":
                   x=cols[1],
                   color=cols[0],
                   barmode="group",
-                  color_discrete_map={'UCloud': 'blue',
-                                      'IBM PowerAI': 'red',
-                                      'NVIDIA DGX-1': 'green',
+                  color_discrete_map={'UCloud': ucloud_color,
+                                      'IBM PowerAI': pwrai_color,
+                                      'NVIDIA DGX-1': dgx1_color,
                                       },
                   hover_data=[cols[1], cols[3]],
                   facet_col=cols[4]
                   )
 
-    fig1.update_xaxes(tickvals=[1, 2, 4, 8], title_text="Number of GPUs")
+    fig1.update_xaxes(tickvals=[1, 2, 4, 8], title_text="Number of GPUs", linecolor='black')
+    fig1.update_yaxes(linecolor='black', showgrid=True, gridwidth=1, gridcolor='LightGrey')
+    fig1.update_layout({'paper_bgcolor': plt_bkg_color, 'plot_bgcolor': plt_bkg_color})
 
     fig2 = px.bar(dff,
                   y=cols[2],
                   x=cols[1],
                   color=cols[0],
                   barmode="group",
-                  color_discrete_map={'UCloud': 'blue',
-                                      'IBM PowerAI': 'red',
-                                      'NVIDIA DGX-1': 'green',
+                  color_discrete_map={'UCloud': ucloud_color,
+                                      'IBM PowerAI': pwrai_color,
+                                      'NVIDIA DGX-1': dgx1_color,
                                       },
                   hover_data=[cols[1], cols[2]],
                   orientation='v',
                   facet_col=cols[4]
                   )
 
-    fig2.update_xaxes(tickvals=[1, 2, 4, 8], title_text="Number of GPUs")
+    fig2.update_xaxes(tickvals=[1, 2, 4, 8], title_text="Number of GPUs", linecolor='black')
+    fig2.update_yaxes(linecolor='black', showgrid=True, gridwidth=1, gridcolor='LightGrey')
+    fig2.update_layout({'paper_bgcolor': plt_bkg_color, 'plot_bgcolor': plt_bkg_color})
 
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
-
-    st.write("-------")
 
 elif radio == "Benchmark 3":
 
@@ -256,36 +341,39 @@ elif radio == "Benchmark 3":
                   x=cols[1],
                   color=cols[0],
                   barmode="group",
-                  color_discrete_map={'UCloud': 'blue',
-                                      'IBM PowerAI': 'red',
-                                      'NVIDIA DGX-1': 'green',
-                                      'NVIDIA DGX-2': 'orange'},
+                  color_discrete_map={'UCloud': ucloud_color,
+                                      'IBM PowerAI': pwrai_color,
+                                      'NVIDIA DGX-1': dgx1_color,
+                                      'NVIDIA DGX-2': dgx2_color
+                                      },
                   hover_data=[cols[1], cols[3]],
                   facet_col=cols[4]
                   )
 
-    fig1.update_xaxes(tickvals=[1, 2, 4, 8, 16], title_text="Number of GPUs")
+    fig1.update_xaxes(tickvals=[1, 2, 4, 8, 16], title_text="Number of GPUs", linecolor='black')
+    fig1.update_yaxes(linecolor='black', showgrid=True, gridwidth=1, gridcolor='LightGrey')
+    fig1.update_layout({'paper_bgcolor': plt_bkg_color, 'plot_bgcolor': plt_bkg_color})
 
     fig2 = px.bar(dff,
                   y=cols[2],
                   x=cols[1],
                   color=cols[0],
                   barmode="group",
-                  color_discrete_map={'UCloud': 'blue',
-                                      'IBM PowerAI': 'red',
-                                      'NVIDIA DGX-1': 'green',
-                                      'NVIDIA DGX-2': 'orange',
+                  color_discrete_map={'UCloud': ucloud_color,
+                                      'IBM PowerAI': pwrai_color,
+                                      'NVIDIA DGX-1': dgx1_color,
+                                      'NVIDIA DGX-2': dgx2_color
                                       },
                   hover_data=[cols[1], cols[2]],
                   facet_col=cols[4]
                   )
 
-    fig2.update_xaxes(tickvals=[1, 2, 4, 8, 16], title_text="Number of GPUs")
+    fig2.update_xaxes(tickvals=[1, 2, 4, 8, 16], title_text="Number of GPUs", linecolor='black')
+    fig2.update_yaxes(linecolor='black', showgrid=True, gridwidth=1, gridcolor='LightGrey')
+    fig2.update_layout({'paper_bgcolor': plt_bkg_color, 'plot_bgcolor': plt_bkg_color})
 
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
-
-    st.write("-------")
 
 elif radio == "Benchmark 4":
 
@@ -334,33 +422,35 @@ elif radio == "Benchmark 4":
                   x=cols[1],
                   color=cols[0],
                   barmode="group",
-                  color_discrete_map={'UCloud': 'blue',
-                                      'IBM PowerAI': 'red',
+                  color_discrete_map={'UCloud': ucloud_color,
+                                      'IBM PowerAI': pwrai_color,
                                       },
                   hover_data=[cols[1], cols[3]],
                   facet_col=cols[4]
                   )
 
-    fig1.update_xaxes(tickvals=[1, 2, 4], title_text="Number of GPUs")
+    fig1.update_xaxes(tickvals=[1, 2, 4], title_text="Number of GPUs", linecolor='black')
+    fig1.update_yaxes(linecolor='black', showgrid=True, gridwidth=1, gridcolor='LightGrey')
+    fig1.update_layout({'paper_bgcolor': plt_bkg_color, 'plot_bgcolor': plt_bkg_color})
 
     fig2 = px.bar(dff,
                   y=cols[2],
                   x=cols[1],
                   color=cols[0],
                   barmode="group",
-                  color_discrete_map={'UCloud': 'blue',
-                                      'IBM PowerAI': 'red',
+                  color_discrete_map={'UCloud': ucloud_color,
+                                      'IBM PowerAI': pwrai_color,
                                       },
                   hover_data=[cols[1], cols[2]],
                   facet_col=cols[4]
                   )
 
-    fig2.update_xaxes(tickvals=[1, 2, 4], title_text="Number of GPUs")
+    fig2.update_xaxes(tickvals=[1, 2, 4], title_text="Number of GPUs", linecolor='black')
+    fig2.update_yaxes(linecolor='black', showgrid=True, gridwidth=1, gridcolor='LightGrey')
+    fig2.update_layout({'paper_bgcolor': plt_bkg_color, 'plot_bgcolor': plt_bkg_color})
 
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
-
-    st.write("-------")
 
 elif radio == "Benchmark 5":
 
@@ -409,20 +499,20 @@ elif radio == "Benchmark 5":
                   x=cols[1],
                   color=cols[0],
                   barmode="group",
-                  color_discrete_map={'UCloud': 'blue',
-                                      'IBM PowerAI': 'red',
-                                      'NVIDIA DGX-1': 'green',
-                                      'NVIDIA DGX-2': 'orange'
+                  color_discrete_map={'UCloud': ucloud_color,
+                                      'IBM PowerAI': pwrai_color,
+                                      'NVIDIA DGX-1': dgx1_color,
+                                      'NVIDIA DGX-2': dgx2_color
                                       },
                   hover_data=[cols[1], cols[3]],
                   facet_col=cols[4]
                   )
 
-    fig1.update_xaxes(tickvals=[1, 2, 4, 8, 16], title_text="Number of GPUs")
+    fig1.update_xaxes(tickvals=[1, 2, 4, 8, 16], title_text="Number of GPUs", linecolor='black')
+    fig1.update_yaxes(linecolor='black', showgrid=True, gridwidth=1, gridcolor='LightGrey')
+    fig1.update_layout({'paper_bgcolor': plt_bkg_color, 'plot_bgcolor': plt_bkg_color})
 
     st.plotly_chart(fig1)
-    st.write("-------")
 
 else:
     description
-    st.write("-------")
