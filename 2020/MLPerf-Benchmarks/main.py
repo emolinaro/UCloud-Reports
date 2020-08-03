@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 import plotly.express as px
+from PIL import Image
 
 
 @st.cache
@@ -113,7 +114,7 @@ The results are compared with the performance of NVIDIA DGX-1/DGX-2 systems repo
 
 ### Specs:
 
-The runtime system on UCloud corresponds to one `u1-gpu-4` machine: 
+The runtime system used on UCloud is the `u1-gpu-4` machine type: 
 - 4 NVIDIA Volta GPUs 
 - 78 CPU cores
 - 185 GB of memory
@@ -124,6 +125,8 @@ The runtime system on UCloud corresponds to one `u1-gpu-4` machine:
 ### SIDE MENU ###
 #################
 
+# logo = Image.open('figs/logo_esc.png')
+# st.sidebar.image(logo, format='PNG', width=50)
 st.sidebar.title("Benchmark Models")
 
 radio = st.sidebar.radio(label="", options=["Description",
