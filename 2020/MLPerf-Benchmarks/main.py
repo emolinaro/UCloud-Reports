@@ -101,7 +101,7 @@ Computational Scientist \n
 eScience Center \n
 Syddansk Universitet
 
-### Desciption:
+### Description:
 
 This report summarizes the results of _single-node data-parallel training_ tests done on the UCloud interactive HPC 
 platform and the IBM PowerAI system, based on [MLPerf training benchmarks](https://mlperf.org/training-overview/#overview). 
