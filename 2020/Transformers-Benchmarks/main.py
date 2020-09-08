@@ -399,6 +399,7 @@ elif radio == "Benchmark 2":
     ## Create line charts
     fig1 = gen_line_chart(dff_t, cols_t[2], cols_t[4])
     fig2 = gen_line_chart(dff_t, cols_t[2], cols_t[3])
+    fig2.update_yaxes(range=[0.86,0.9])
 
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
