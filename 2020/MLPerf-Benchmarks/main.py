@@ -92,7 +92,7 @@ description = """
 ### Last update:
 July 31, 2020
 
-### Report number:
+### Report:
 2020-1
 
 ### Author:
