@@ -1,4 +1,5 @@
 Host, GPUs, Batch size/GPU, Accuracy - FP32, Time to train - FP32 (s), Accuracy - APEX, Time to train - APEX  (s), Accuracy - LMS,  Time to train - LMS
+UCloud, 1, 8, 0.8678, 155, 0.8663, 117, -, -
 UCloud, 1, 16, 0.8771, 111, 0.8791, 80, -, -
 UCloud, 1, 32, 0.8567, 95, 0.8567, 52, -, -
 UCloud, 1, 64, 0.8222, 89, 0.8242, 44, -, -
