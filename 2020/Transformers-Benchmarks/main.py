@@ -292,6 +292,8 @@ if radio == "Benchmark 1":
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
 
+    st.markdown("#### Fixed data batch size: each batch is equally partitioned over the devices")
+
     ## Create bar charts
 
     ### GLOBAL BATCH SIZE = 1024
@@ -403,6 +405,8 @@ elif radio == "Benchmark 2":
 
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
+
+    st.markdown("#### Fixed data batch size: each batch is equally partitioned over the devices")
 
     ## Create bar charts
 
