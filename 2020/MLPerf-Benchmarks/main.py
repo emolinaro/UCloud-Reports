@@ -119,8 +119,8 @@ The results are compared with the performance of NVIDIA DGX-1/DGX-2 systems repo
 
 The runtime system used on UCloud is the `u1-gpu-4` machine type: 
 - 4 NVIDIA Volta GPUs 
-- 78 CPU cores
-- 185 GB of memory
+- 63 CPU cores
+- 180 GB of memory
 
 """
 

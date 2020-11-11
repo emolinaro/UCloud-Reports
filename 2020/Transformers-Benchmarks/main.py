@@ -208,8 +208,8 @@ The training process is executed in
 #### 1. UCloud
 `u1-gpu-4` machine type: 
 - 4 NVIDIA Volta GPUs 
-- 78 CPU cores
-- 185 GB of memory
+- 63 CPU cores
+- 180 GB of memory
 
 #### 2. PowerAI
 POWER9 Server AC922 w/ 4x V100 GPUs and NVLink to GPUs.
